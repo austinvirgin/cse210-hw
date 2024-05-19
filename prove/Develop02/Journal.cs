@@ -12,6 +12,7 @@ class Journal {
         DateTime currentDate = DateTime.Now;
         entry._date = currentDate.ToString("M/d/yyyy");
         _entries.Add(entry);
+        Console.WriteLine("Congrats on making an entry!");
     }
 
     public void DisplayEntries(){
@@ -21,7 +22,8 @@ class Journal {
     }
 
     public void Save(){
-        string fileName = "entries.txt";
+        Console.Write("What is the file name? ");
+        string fileName = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(fileName)){
             foreach (Entry entry in _entries){
                 outputFile.WriteLine($"{entry._answer}, {entry._prompt}, {entry._date}");
@@ -30,7 +32,8 @@ class Journal {
     }
 
     public void Load(){
-        string fileName = "entries.txt";
+        Console.Write("What is the file name? ");
+        string fileName = Console.ReadLine();
         string[] lines = System.IO.File.ReadAllLines(fileName);
         foreach (string line in lines){
             Entry entry = new Entry();
@@ -38,6 +41,7 @@ class Journal {
             entry._answer = parts[0];
             entry._prompt = parts[1];
             entry._date = parts[2];
+            _entries.Add(entry);
         }
     }
 }
