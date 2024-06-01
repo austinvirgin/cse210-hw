@@ -17,8 +17,6 @@ class Program
             Console.WriteLine("Please select one of the following choices: \n 0. Write \n 1. Display \n 2. Load \n 3. Save \n 4. Quit");
             userChoice = GetUserChoice();
             ChoiceDecision(userChoice);
-            
-
         } while (userChoice != 4);
     }
 
