@@ -7,6 +7,14 @@ class Refrence{
     private int _chapter = 2;
     private int _verse;
     public List<Verse> _verses = new List<Verse>();
+
+    public Refrence(int verse1){
+        _book = "2nd Nephi";
+        _chapter = 2;
+        Verse newverse = new Verse(verse1);
+        newverse.SetVerseNum(verse1);
+        _verses.Add(newverse);
+    }
     public Refrence(int verse1, int verse2){
         _book = "2nd Nephi";
         _chapter = 2;
