@@ -33,7 +33,7 @@ class Verse{
     }
 
     public void verse11(){
-        string[] words = {"For", "it", "must", "needs", "be,", "that", "there", "is", "an", "opposition", 
+        List<string> words = new List<string> {"For", "it", "must", "needs", "be,", "that", "there", "is", "an", "opposition", 
             "in", "all", "things.", "If", "not", "so,", "my", "firstborn", "in", "the", 
             "wilderness,", "righteousness", "could", "not", "be", "brought", "to", "pass,", 
             "neither", "wickedness,", "neither", "holiness", "nor", "misery,", "neither", 
