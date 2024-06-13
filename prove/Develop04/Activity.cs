@@ -6,10 +6,9 @@ class Activity
     protected string _desc;
     protected int _duration;
 
-    public Activity(string title, string desc, int duration){
+    public Activity(string title, string desc){
         _title = title;
         _desc = desc;
-        _duration = duration;
     }
 
     public int GetDuration(){
@@ -20,7 +19,15 @@ class Activity
         _duration = duration;
     }
 
-    public bool EndActivity(){
+    public void StartProgram(){
+        Console.WriteLine($"Welcome to the {_title}\n");
+        Console.WriteLine($"{_desc}\n");
+    }
 
+    public void EndProgram(){
+        Console.WriteLine("Well done!!\n");
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_title}.");
+        Thread.Sleep(6000);
+        Console.Clear();
     }
 }

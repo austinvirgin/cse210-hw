@@ -9,7 +9,7 @@ class Program
         int activityChoice;
         do
         {
-            Console.Write("Which activity would you like to do (1. Breathing Activity 2. Reflection Activity 3. Lister Activity 4. Quit)");
+            Console.Write("Which activity would you like to do (1.Breathing Activity 2.Reflection Activity 3.Lister Activity 4.Quit) ");
             activityChoice = int.Parse(Console.ReadLine());
             switch (activityChoice)
             {
@@ -36,30 +36,35 @@ class Program
         } while (activityChoice != 4);
 
         void BreathingChoice(){
-            Timer timer = new Timer();
-            Welcome("Breathing Activity");
-            int userDuration = UserDuration();
-            BreathingActivity breathingActivity = new BreathingActivity("Breathing", "Breathing Activity", userDuration);
+            BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
+            breathingActivity.StartProgram();
+            breathingActivity.SetDuration(UserDuration());
+            breathingActivity.InteractBreathing();
+            breathingActivity.EndProgram();
         }
 
         void ReflectionChoice(){
-            Timer timer = new Timer();
+            ReflectionActivity reflectionActivity = new ReflectionActivity("Reflection Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+            reflectionActivity.StartProgram();
+            reflectionActivity.SetDuration(UserDuration());
+            reflectionActivity.InteractReflection();
+            reflectionActivity.EndProgram();
         }  
 
         void ListerChoice(){
-            Timer timer = new Timer();
+            ListerActivity listerActivity = new ListerActivity("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+            listerActivity.StartProgram();
+            listerActivity.SetDuration(UserDuration());
+            listerActivity.InteractLister();
+            listerActivity.EndProgram();
         }
 
         void EndingChoice(){
             Console.WriteLine("Thank you for taking some time to be mindful.");
         }
 
-        void Welcome(string type){
-            Console.WriteLine($"Welcome to the {type}");
-        }
-
         int UserDuration(){
-            Console.Write("How long would you like to be in this activity? ");
+            Console.Write("How long, in seconds, would you like to be in this activity? ");
             int userDuration = int.Parse(Console.ReadLine());
             return userDuration;
         }
