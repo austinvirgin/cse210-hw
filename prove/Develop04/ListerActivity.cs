@@ -9,7 +9,7 @@ class ListerActivity : Activity
     
    }
 
-   public void InteractLister(){
+   public override void Interact(){
       Timer timer = new Timer(_duration);
       Console.Clear();
       string prompt = GetRandomPrompt();

@@ -17,15 +17,15 @@ class Program
             switch (activityChoice)
             {
                 case 1:
-                    BreathingChoice();
+                    DoChoiceActions(breathingActivity);
                     break;
 
                 case 2:
-                    ReflectionChoice();
+                    DoChoiceActions(reflectionActivity);
                     break;
 
                 case 3:
-                    ListerChoice();
+                    DoChoiceActions(listerActivity);
                     break;
 
                 case 4:
@@ -38,29 +38,13 @@ class Program
             }
         } while (activityChoice != 4);
 
-        void BreathingChoice(){
-            breathingActivity.StartProgram();
-            breathingActivity.SetDuration(UserDuration());
-            breathingActivity.InteractBreathing();
-            breathingActivity.EndProgram();
-            breathingActivity.ActivityCount();
-        }
-
-        void ReflectionChoice(){
-            reflectionActivity.StartProgram();
-            reflectionActivity.SetDuration(UserDuration());
-            reflectionActivity.InteractReflection();
-            reflectionActivity.EndProgram();
-            reflectionActivity.ActivityCount();
+        void DoChoiceActions(Activity activity){
+            activity.StartProgram();
+            activity.SetDuration(UserDuration());
+            activity.Interact();
+            activity.EndProgram();
+            activity.ActivityCount();
         }  
-
-        void ListerChoice(){
-            listerActivity.StartProgram();
-            listerActivity.SetDuration(UserDuration());
-            listerActivity.InteractLister();
-            listerActivity.EndProgram();
-            listerActivity.ActivityCount();
-        }
 
         void EndingChoice(){
             Console.WriteLine("Thank you for taking some time to be mindful.");

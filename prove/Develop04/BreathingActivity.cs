@@ -8,7 +8,7 @@ class BreathingActivity : Activity
         _desc = desc;
     }
 
-    public void InteractBreathing(){
+    public override void Interact(){
         Timer timer = new Timer(_duration);
         Console.Clear();
         while (!timer.TimerDone())

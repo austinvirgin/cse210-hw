@@ -39,4 +39,8 @@ class Activity
     public void PrintActivityCount(){
         Console.WriteLine($"You have done the {_title} {_activityCount} times this session!");
     }
+
+    public virtual void Interact(){
+
+    }
 }

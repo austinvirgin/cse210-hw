@@ -7,7 +7,7 @@ class ReflectionActivity : Activity
         _desc = desc;
     }
 
-    public void InteractReflection(){
+    public override void Interact(){
         Timer timer = new Timer(_duration);
         Console.Clear();
         while (!timer.TimerDone())
