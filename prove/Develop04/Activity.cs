@@ -2,6 +2,7 @@ using System.Dynamic;
 
 class Activity
 {
+    protected int _activityCount = 0;
     protected string _title;
     protected string _desc;
     protected int _duration;
@@ -29,5 +30,13 @@ class Activity
         Console.WriteLine($"You have completed another {_duration} seconds of the {_title}.");
         Thread.Sleep(6000);
         Console.Clear();
+    }
+
+    public void ActivityCount(){
+        _activityCount++;
+    }
+
+    public void PrintActivityCount(){
+        Console.WriteLine($"You have done the {_title} {_activityCount} times this session!");
     }
 }
