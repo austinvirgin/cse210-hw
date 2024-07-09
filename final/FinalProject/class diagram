@@ -1,0 +1,98 @@
+classDiagram
+    class Game {
+        - gameState: GameState
+        - score: int
+        + Start()
+        + Update()
+        + Draw()
+    }
+
+    class Player {
+        - bird: Bird
+        + Update()
+        + Jump()
+    }
+
+    class Bird {
+        - position: Vector2
+        - velocity: Vector2
+        + Flap()
+        + Update()
+    }
+
+    class Obstacle {
+        - position: Vector2
+        - width: int
+        - height: int
+        + Update()
+        + Draw()
+    }
+
+    class Pipe {
+        - gapHeight: int
+        + Generate()
+    }
+
+    class GameController {
+        - game: Game
+        + StartGame()
+        + EndGame()
+    }
+
+    class CollisionManager {
+        + CheckCollision(bird: Bird, obstacle: Obstacle)
+    }
+
+    class ScoreManager {
+        - score: int
+        + IncrementScore()
+        + GetScore()
+    }
+
+    class SoundManager {
+        + PlaySound(effect: SoundEffect)
+    }
+
+    class InputHandler {
+        + GetInput()
+    }
+
+    class GraphicsManager {
+        + DrawBird(bird: Bird)
+        + DrawObstacle(obstacle: Obstacle)
+    }
+
+    class PhysicsManager {
+        + ApplyGravity(bird: Bird)
+        + ApplyVelocity(bird: Bird)
+    }
+
+    class PowerUp {
+        - position: Vector2
+        + ApplyEffect(player: Player)
+    }
+
+    class Background {
+        - texture: Texture
+        + Scroll()
+    }
+
+    class UIManager {
+        + ShowScore(score: int)
+        + ShowGameOver()
+    }
+
+    Game --> Player
+    Player --> Bird
+    Game --> Obstacle
+    Obstacle <|-- Pipe
+    Game --> GameController
+    Game --> CollisionManager
+    Game --> ScoreManager
+    Game --> SoundManager
+    Game --> InputHandler
+    Game --> GraphicsManager
+    Game --> PhysicsManager
+    Game --> PowerUp
+    Game --> Background
+    Game --> UIManager
