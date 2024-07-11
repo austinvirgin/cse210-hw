@@ -1,6 +1,6 @@
 public class Player
 {
-    public Bird Bird {get: private set;}
+   // public Bird Bird {get: private set;}
 
     public Player()
     {
@@ -10,11 +10,11 @@ public class Player
 
     public void Update()
     {
-        bird.Update();
+      //  bird.Update();
     }
 
     public void Jump()
     {
-        bird.Flap();
+    //    bird.Flap();
     }
 }
