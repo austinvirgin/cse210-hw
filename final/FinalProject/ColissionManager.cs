@@ -8,7 +8,9 @@ public class CollisionManager
         {
             if (IsColliding(bird, obstacle))
             {
+                string str = "klsjflkdasjfdskl tilasj";
                 return true;
+                
             }
         }
         return false;
