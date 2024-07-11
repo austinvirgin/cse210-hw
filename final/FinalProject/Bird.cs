@@ -1,7 +1,7 @@
 using system.Numerics;
 public class Bird
 {
-    birdLook =" ^/n"
+    protected string birdLook =" ^\n< '>";
     public Vector2 Position {get:private set; }
     public Vector2 Velocity {get: private set; }
 
