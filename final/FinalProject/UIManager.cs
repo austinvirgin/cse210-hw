@@ -1,8 +1,37 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
-class UIManager
+public class UIManager
 {
+    Pipe pipe = new Pipe();
+    public void GameDisplay(List<Obstacle> obstacles, Bird bird){
+        for (int x = 1; x < 26; x++)
+        {
+            for (int y = 1; y <101; y++)
+            {
+                foreach (Obstacle obstacle in obstacles)
+                {
+                   if (y == obstacle.GetPositionTop().Y && x >= obstacle.GetPositionTop().X){
+                        Console.Write(pipe.pipeWidth);
+                        y += 4;
+                   }
+                   else if (y == obstacle.GetPositionBottom().Y && x <= obstacle.GetPositionBottom().X){
+                        Console.Write(pipe.pipeWidth);
+                        y += 4;
+                   }
+
+                   else if (y == bird.GetPosition().Y && x == bird.GetPosition().X){
+                        Console.Write(bird.birdLook);
+                        y += 1;
+                   }
+                   
+                }
+                Console.Write(" ");
+            }
+            Console.WriteLine("");
+        }
+    }
     public void ShowScore(int score){
 
     }
@@ -28,9 +57,5 @@ class UIManager
             }
             Console.WriteLine();
         }
-    }
-
-    public void CreateObstacle(Obstacle obstacle){
-                obstacle.CreateObstacle();
     }
 }

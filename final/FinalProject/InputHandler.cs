@@ -8,8 +8,8 @@ class InputHandler
         Console.ReadLine();
         return true;
     }
-    public async Task<bool> SpaceBarPress(){
-        ConsoleKeyInfo keyInfo = await Task.Run(() => Console.ReadKey(true));
-        return keyInfo.Key == ConsoleKey.Spacebar;
-    }
+    // public async Task<bool> SpaceBarPress(){
+    //     ConsoleKeyInfo keyInfo = await Task.Run(() => Console.ReadKey(true));
+    //     return keyInfo.Key == ConsoleKey.Spacebar;
+    // }
 }

@@ -28,16 +28,25 @@ class Game
 
     public void GameGoing(){
         int turnsGone = 0;
+        obstacle.CreateObstacle();
+        obstacles.Add(obstacle);
         while (!collisionManager.CheckCollision(bird, obstacles))
         {
-            if (turnsGone % 25 == 0)
+            if (turnsGone == 20)
             {
-                uIManager.CreateObstacle(obstacle);
+                obstacle.CreateObstacle();
+                obstacles.Add(obstacle);
+                turnsGone = 0;
             }
             turnsGone += 1;
-            Task<bool> spacebar = inputHandler.SpaceBarPress();
+            // Task<bool> spacebar = inputHandler.SpaceBarPress();
+            // if (spacebar.Result == true){
+            //     player.Jump();
+            // }
             graphicsManager.MoveEverything(bird, obstacles);
+            graphicsManager.DrawDisplay(uIManager, obstacles, bird);
+            Thread.Sleep(100);
+            Console.Clear();
         }
-        
     }
 }

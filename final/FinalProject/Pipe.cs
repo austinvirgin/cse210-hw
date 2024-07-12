@@ -1,6 +1,6 @@
 public class Pipe
 {
-  string pipeWidth = "XXXX";
+  public string pipeWidth = "XXXX";
     //public int GapHeight { get; private set; }
 
     //public Pipe(Vector2 position, int width, int height, int gapHeight)

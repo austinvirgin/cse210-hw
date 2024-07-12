@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 public class GraphicsManager
 {
+
+    public void DrawDisplay(UIManager uIManager, List<Obstacle> obstacles, Bird bird){
+        uIManager.GameDisplay(obstacles, bird);
+    }
     public void DrawBird(Bird bird)
     {
         // Logic to draw bird
