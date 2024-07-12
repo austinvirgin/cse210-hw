@@ -1,5 +1,6 @@
-//public class Pipe : Obstacle
-//{
+public class Pipe
+{
+  string pipeWidth = "XXXX";
     //public int GapHeight { get; private set; }
 
     //public Pipe(Vector2 position, int width, int height, int gapHeight)
@@ -12,4 +13,4 @@
     //{
         // Logic to generate pipe with a gap
     //}
-//}
+}

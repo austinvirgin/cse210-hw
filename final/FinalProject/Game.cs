@@ -1,82 +1,43 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 
-class Game:UIManager
+class Game
 {
-    
+    //All things will be initalized and started through here
+    public List<Obstacle> obstacles = new List<Obstacle>();
+    Bird bird = new Bird();
+    CollisionManager collisionManager = new CollisionManager();
+    GameController gameController = new GameController();
+    GraphicsManager graphicsManager = new GraphicsManager();
+    InputHandler inputHandler = new InputHandler();
+    Obstacle obstacle = new Obstacle();
+    PhysicsManager physicsManager = new PhysicsManager();
+    Pipe pipe = new Pipe();
+    Player player = new Player();
+    PowerUp powerUp = new PowerUp();
+    ScoreManager scoreManager = new ScoreManager();
+    SoundManager soundManager = new SoundManager();
+    UIManager uIManager = new UIManager();
+
+    public void StartGame()
+    {
+        gameController.StartGame(uIManager, inputHandler);
+        GameGoing();
+    }
+
+    public void GameGoing(){
+        int turnsGone = 0;
+        while (!collisionManager.CheckCollision(bird, obstacles))
+        {
+            if (turnsGone % 25 == 0)
+            {
+                uIManager.CreateObstacle(obstacle);
+            }
+            turnsGone += 1;
+            Task<bool> spacebar = inputHandler.SpaceBarPress();
+            graphicsManager.MoveEverything(bird, obstacles);
+        }
+        
+    }
 }
-
-public enum GameState
-{
-    NotStarted,
-    Running,
-    Paused,
-    Ended
-}
-
-// public class Game
-// {
-//     private GameState gameState;
-//     private int score;
-//     private Player player;
-//     private List<Obstacle> obstacles;
-//     private ScoreManager scoreManager;
-//     //private SoundManager soundManager;
-//     private InputHandler inputHandler;
-//     private GraphicsManager graphicsManager;
-//     private PhysicsManager physicsManager;
-//     private CollisionManager collisionManager;
-//     private Background background;
-//     private UIManager uiManager;
-//     private PowerUp powerUp;
-//     private GameController gameController;
-
-//     public Game()
-//     {
-//         gameState = GameState.NotStarted;
-//         score = 0;
-//         player = new Player();
-//         obstacles = new List<Obstacle>();
-//         scoreManager = new ScoreManager();
-//         //soundManager = new SoundManager();
-//         inputHandler = new InputHandler();
-//         graphicsManager = new GraphicsManager();
-//         physicsManager = new PhysicsManager();
-//         collisionManager = new CollisionManager();
-//         background = new Background();
-//         uiManager = new UIManager();
-//         powerUp = new PowerUp();
-//         //gameController = new GameController(this);
-//     }
-
-    // public void Start()
-    // {
-    //     gameState = GameState.Running;
-    //     gameController.StartGame();
-    // }
-
-    // public void Update()
-    // {
-    //     if (gameState == GameState.Running)
-    //     {
-    //         //inputHandler.GetInput();
-    //         player.Update();
-    //         foreach (var obstacle in obstacles)
-    //         {
-    //             obstacle.Update();
-    //         }
-           // collisionManager.CheckCollision(player.Bird, obstacles);
-            // physicsManager.ApplyGravity(player.Bird);
-            // physicsManager.ApplyVelocity(player.Bird);
-            // scoreManager.IncrementScore();
-            // graphicsManager.DrawBird(player.Bird);
-            // graphicsManager.DrawObstacle(obstacles);
-            // uiManager.ShowScore(score);
-//         }
-//     }
-
-//     public void Draw()
-//     {
-//         // Drawing logic, typically in a game loop
-//     }
-// }

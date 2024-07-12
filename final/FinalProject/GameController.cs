@@ -1,11 +1,12 @@
 class GameController
 {
-    public void StartGame(){
-        UIManager uIManager = new UIManager();
+    public void StartGame(UIManager uIManager, InputHandler inputHandler){
         uIManager.StartScreen();
-        InputHandler inputHandler = new InputHandler();
         if (inputHandler.ClickedEnter()){
+            Console.Clear();
             Console.WriteLine("Welcome to the game!");
+            Thread.Sleep(300);
+            Console.Clear();
         }
     }
 }

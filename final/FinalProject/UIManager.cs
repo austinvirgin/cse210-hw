@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 class UIManager
@@ -11,21 +12,25 @@ class UIManager
     }
 
     public void StartScreen(){
-        for (int i = 0; i < 25; i++)
+        for (int x = 0; x < 25; x++)
         {
-            for (int z = 0; z <100; z++)
+            for (int y = 0; y <100; y++)
             {
-                if (i == 12 && z == 41){
+                if (x == 12 && y == 41){
                     Console.Write("Welcome to the game");
-                    z += 19;
+                    y += 19;
                 }
-                if (i == 13 && z == 40){
+                if (x == 13 && y == 40){
                     Console.Write("Press enter to start!");
-                    z += 21;
+                    y += 21;
                 }
                 Console.Write(" ");
             }
             Console.WriteLine();
         }
+    }
+
+    public void CreateObstacle(Obstacle obstacle){
+                obstacle.CreateObstacle();
     }
 }

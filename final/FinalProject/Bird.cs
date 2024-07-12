@@ -1,23 +1,34 @@
 
+using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+
 public class Bird
 {
+    // This is the bird design
     protected string birdLook =" ^\n< '>";
-    //public Vector2 Position {get:private set; }
-    //public Vector2 Velocity {get: private set; }
 
-    //public bird()
-    //{
-//        Position = new Vector2(0,0);
-        //Velocity = new Vector2(0,0);
-    //}
+    private Vector2 _position { get; set; }
+    private Vector2 _velocity { get; set; }
+
+    //This is the bird constructor it sets the position of the bird at 2x and 50y
+    public Bird()
+    {
+        _position = new Vector2(2, 50);
+    }
 
     public void Flap()
     {
-        //Velocity = new Vector2(0,-5);
+        _velocity = new Vector2(0,-5); // I think we may want to actually add here let me know what you think.
     }
 
     public void Update()
     {
-   //     Position=+ Velocity;
+        _position += _velocity; // We need to account for gravity here so we may want to add that in here let me know.
     }
+
+
+    public Vector2 GetPosition(){
+        return _position;
+    }
+
 }
