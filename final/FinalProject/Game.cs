@@ -22,7 +22,7 @@ class Game
 
     public void StartGame()
     {
-        gameController.StartGame(uIManager, inputHandler);
+        gameController.StartGame();
         GameGoing();
     }
 

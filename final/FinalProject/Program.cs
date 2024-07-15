@@ -1,11 +1,11 @@
 using System;
 
-class Program
-{
-    static void Main(string[] args)
+    public class Program
     {
-        Game game = new Game();
-        game.StartGame();
+        static void Main(string[] args)
+        {
+            Game game = new Game();
+            game.StartGame();
+        }
+        
     }
-    
-}
