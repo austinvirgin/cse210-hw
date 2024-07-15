@@ -4,6 +4,15 @@ public class Obstacle
 {
     public Vector2 PositionTop { get; private set; }
     public Vector2 PositionBottom { get; private set; }
+    private int gapHeight; // Height of the gap between the top and bottom pipes
+    private int pipeWidth; // Width of the pipes
+
+    public Obstacle(int gapHeight, int pipeWidth)
+    {
+        this.gapHeight = gapHeight;
+        this.pipeWidth = pipeWidth;
+        CreateObstacle();
+    }
 
     public void CreateObstacle(){
         Random random = new Random();
@@ -18,6 +27,12 @@ public class Obstacle
         PositionBottom = new Vector2 (PositionBottom.X, PositionBottom.Y - 2);
     }
 
+    public bool IsOffScreen()
+    {
+        // Check if the pipes have moved off the screen
+        return PositionTop.Y < 0;
+    }
+   
     public virtual void Draw()
     {
         // Drawing logic for the obstacle
