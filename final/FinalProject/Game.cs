@@ -26,7 +26,7 @@ class Game
     public void StartGame()
     {
         gameController.StartGame(uIManager, inputHandler);
-        GameLoop();
+        GameGoing();
     }
 
     public void GameLoop()
