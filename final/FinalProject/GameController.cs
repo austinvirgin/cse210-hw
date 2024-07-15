@@ -1,30 +1,12 @@
-using System.Runtime.CompilerServices;
-using System;
-using System.Threading;
-
 class GameController
 {
-    private InputHandler _inputHandler;
-
-    public GameController(){
-        _inputHandler = new InputHandler();
-    }
-    public void StartGame(){
-        UIManager uIManager = new UIManager();
+    public void StartGame(UIManager uIManager, InputHandler inputHandler){
         uIManager.StartScreen();
-
-        if (_inputHandler.ClickedEnter()){
+       // if (inputHandler.ClickedEnter()){
             Console.Clear();
             Console.WriteLine("Welcome to the game!");
             Thread.Sleep(300);
             Console.Clear();
-        }
-
-        Player player = new Player();
-        player.Start();
-    }
-
-    public void StopGame(){
-        // _inputHandler.Stop();
+        //}
     }
 }
