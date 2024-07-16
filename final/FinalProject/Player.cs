@@ -7,7 +7,7 @@ public class Player
 {
   UIManager uIManager = new UIManager();
   Bird bird = new Bird();
-  private InputHandler _inputHandler;
+  private InputHandler _inputHandler = new InputHandler();
    // public Bird Bird {get: private set;}
 
   public void Start(){
@@ -27,9 +27,9 @@ public class Player
 
     public void Update()
     {
-      // if (_inputHandler.IsSpacebarPressed()){
-      //   Jump();
-      //}
+      if (_inputHandler.IsSpacebarPressed()){
+        Jump();
+      }
       bird.Update();
     }
 

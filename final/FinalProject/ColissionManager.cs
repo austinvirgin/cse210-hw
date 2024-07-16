@@ -4,6 +4,7 @@ public class CollisionManager
 {
     public bool CheckCollision(Bird bird, List<Obstacle> obstacles)
     {
+
         foreach (var obstacle in obstacles) // we go through each of the obstacles here
         {
             if (IsColliding(bird, obstacle)) // we then check if it will collide and if so we return true or false

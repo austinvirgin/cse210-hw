@@ -53,7 +53,7 @@ public class UIManager
         Console.WriteLine("Game Over!");
     }
 
-    public void StartScreen()
+     public void StartScreen()
     {
         // Draw the start screen with instructions
         for (int x = 0; x < 25; x++)
