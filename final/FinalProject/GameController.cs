@@ -1,7 +1,3 @@
-using System.Runtime.CompilerServices;
-using System;
-using System.Threading;
-
 class GameController
  {
     private InputHandler _inputHandler;

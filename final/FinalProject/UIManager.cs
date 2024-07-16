@@ -1,56 +1,43 @@
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+
 public class UIManager
 {
     Pipe pipe = new Pipe();
-
-    public void GameDisplay(List<Obstacle> obstacles, Bird bird)
-    {
-        // Draw the game elements on the screen
+    public void GameDisplay(List<Obstacle> obstacles, Bird bird){
         for (int x = 1; x < 26; x++)
         {
-            for (int y = 1; y < 101; y++)
+            for (int y = 1; y <101; y++)
             {
-                bool isObstacleDrawn = false; // Flag to check if an obstacle has been drawn in the current position
                 foreach (Obstacle obstacle in obstacles)
                 {
-                    // Check if the current position is within the bounds of an obstacle
-                    if (y >= obstacle.GetPositionBottom().Y && y <= obstacle.GetPositionTop().Y)
-                    {
-                        // Draw the obstacle
+                   if (y == obstacle.GetPositionTop().Y && x >= obstacle.GetPositionTop().X){
                         Console.Write(pipe.pipeWidth);
-                        y += pipe.pipeWidth.Length - 1; // Skip the width of the pipe
-                        isObstacleDrawn = true;
-                        break;
-                    }
-                }
+                        y += 4;
+                   }
+                   else if (y == obstacle.GetPositionBottom().Y && x <= obstacle.GetPositionBottom().X){
+                        Console.Write(pipe.pipeWidth);
+                        y += 4;
+                   }
 
-                if (!isObstacleDrawn)
-                {
-                    // Draw the bird if it's in the current position
-                    if (y == bird.GetPosition().Y && x == bird.GetPosition().X)
-                    {
+                   else if (y == bird.GetPosition().Y && x == bird.GetPosition().X){
                         Console.Write(bird.birdLook);
-                        y += bird.birdLook.Length - 1; // Skip the width of the bird
-                    }
-                    else
-                    {
-                        // Draw an empty space if there's no obstacle or bird
-                        Console.Write(" ");
-                    }
+                        y += 1;
+                   }
+                   
                 }
+                Console.Write(" ");
             }
-            Console.WriteLine();
+            Console.WriteLine("");
         }
     }
+    public void ShowScore(int score){
 
-    public void ShowScore(int score)
-    {
-        // Logic to display the score on the screen (not implemented here)
     }
 
-    public void ShowGameOver()
-    {
-        // Display the game over message
-        Console.WriteLine("Game Over!");
+    public void ShowGameOver(){
+        
     }
 
      public void StartScreen()
@@ -58,15 +45,13 @@ public class UIManager
         // Draw the start screen with instructions
         for (int x = 0; x < 25; x++)
         {
-            for (int y = 0; y < 100; y++)
+            for (int y = 0; y <100; y++)
             {
-                if (x == 12 && y == 41)
-                {
+                if (x == 12 && y == 41){
                     Console.Write("Welcome to the game");
                     y += 19;
                 }
-                if (x == 13 && y == 40)
-                {
+                if (x == 13 && y == 40){
                     Console.Write("Press enter to start!");
                     y += 21;
                 }
