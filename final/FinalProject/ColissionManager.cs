@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public class CollisionManager
 {
+    private const int screenHeight = 25;
+    public int obstacleWidth = 4;
     public bool CheckCollision(Bird bird, List<Obstacle> obstacles)
     {
 
@@ -17,11 +19,29 @@ public class CollisionManager
 
     private bool IsColliding(Bird bird, Obstacle obstacle)
     {
-        if (bird.GetPosition().X == obstacle.PositionTop.X && bird.GetPosition().X == obstacle.PositionTop.X + 4){
-            if (bird.GetPosition().Y >= obstacle.PositionTop.Y - 1 || bird.GetPosition().Y <= obstacle.PositionBottom.Y + 1 || bird.GetPosition().Y <= 1){
-                return true;
-            }
+        // Define obstacle boundaries
+        float obstacleTopY = obstacle.PositionTop.Y;
+        float obstacleBottomY = obstacle.PositionBottom.Y;
+        float obstacleX = obstacle.PositionTop.X; // Assuming both top and bottom have the same X position
+
+        // Get bird position
+        int birdX = (int)bird.GetPosition().X;
+        int birdY = (int)bird.GetPosition().Y;
+
+        // Check for collision based on specific conditions
+        bool xOverlap = birdX >= obstacleX && birdX <= obstacleX + obstacleWidth; // Assuming obstacleWidth is defined
+        bool yOverlap = birdY >= obstacleTopY && birdY <= obstacleBottomY;
+
+        // Check if there's an overlap in both x and y dimensions
+        if (xOverlap && yOverlap)
+        {
+            return true;
         }
+        else if (bird.GetPosition().Y <= 0 || bird.GetPosition().Y >= screenHeight){
+            return true;
+        }
+
         return false;
     }
+
 }

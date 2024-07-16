@@ -1,10 +1,12 @@
 public class PhysicsManager
 {
-    private const float Gravity = 9.8f;
+    private const float Gravity = -9.8f;
+    private const int targetFps = 120;
+   private readonly float _timeStep = 1f / targetFps;
 
-    public void ApplyGravity(Bird bird)
+    public float ApplyGravity()
     {
-       // bird.Velocity = new System.Numerics.Vector2(bird.Velocity.X, bird.Velocity.Y + Gravity * 0.1f);
+      return Gravity * _timeStep;
     }
 
     public void ApplyVelocity(Bird bird)

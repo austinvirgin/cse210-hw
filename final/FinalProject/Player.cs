@@ -2,6 +2,7 @@ using System.ComponentModel.Design;
 
 public class Player
 {
+  int timesDone = 0;
   UIManager uIManager = new UIManager();
   Bird bird = new Bird();
   private InputHandler _inputHandler = new InputHandler();

@@ -29,7 +29,7 @@ public class InputHandler
                 {
                     _spacebarPressed = true;
                     Console.WriteLine("Spacebar pressed!");
-                    Thread.Sleep(100); // Adjust sleep time if needed
+                    Thread.Sleep(100);
                 }
             }
             Thread.Sleep(10); // Adjust sleep time if needed

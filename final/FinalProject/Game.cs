@@ -23,6 +23,7 @@ class Game
 
     public async void StartGame()
     {
+        gameController.StartGame();
         InputHandler inputHandler = new InputHandler();
         await GameLoop(inputHandler);
     }
@@ -35,6 +36,7 @@ class Game
 
         while (!collisionManager.CheckCollision(bird, obstacles))
         {
+            Console.Clear();
             var loopStart = DateTime.Now;
             
             if (inputHandler.IsSpacebarPressed())
@@ -65,7 +67,6 @@ class Game
 
             await Task.Delay((int)delay);
 
-            Console.Clear();
             Console.CursorTop = Console.CursorLeft = 0;
 
             frameCount++;
