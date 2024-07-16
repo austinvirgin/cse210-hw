@@ -15,8 +15,6 @@ class GameController
             Console.Clear();
         }
 
-        Player player = new Player();
-        player.Start();
     }
 
     public void StopGame(){

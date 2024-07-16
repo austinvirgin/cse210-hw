@@ -1,7 +1,7 @@
 // using System.Media;
 
-// public class SoundManager
-// {
+public class SoundManager
+ {
 //     private SoundPlayer MusicStart;
 //     private SoundPlayer MusicEnd;
 
@@ -22,4 +22,4 @@
 //     {
 //         MusicBird.Play();
 //     }
-// }
+ }

@@ -1,8 +1,4 @@
 using System.Collections.Generic;
-//GraphicsManager class
-//public bool ClickedEnter(){
-  //  Console.ReadLine();
-    //return true;
 
 public class GraphicsManager
 {
@@ -17,7 +13,7 @@ public class GraphicsManager
 
     public void DrawObstacle()
     {
-        Obstacle obstacle = new Obstacle();
+        //Obstacle obstacle = new Obstacle();
         // Logic to draw obstacles
     }
 

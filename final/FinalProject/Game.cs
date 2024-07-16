@@ -29,12 +29,11 @@ class Game
          int frameCount = 0; // Frame counter to track when to generate new obstacles
          const int targetFps = 60;
          const int frameTime = 1000 / targetFps;
-         while (!collisionManager.CheckCollision(bird, obstacles))
+         while (true)//!collisionManager.CheckCollision(bird, obstacles))
          {
             var loopStart = DateTime.Now;
             if (inputHandler.IsSpacebarPressed()){
-                Console.WriteLine("spacebar");
-                Thread.Sleep(100);
+                 
                 bird.Flap();
             }
             player.Update();
@@ -53,9 +52,14 @@ class Game
              graphicsManager.DrawDisplay(uIManager, obstacles, bird);
 
              // Pause for a short time to control the game speed
+            Thread.Sleep(16);
              // Clear the console for the next frame
 
+             frameCount++;
             
+            if (frameCount % 10 == 0){
+                await Task.Yield();
+            }
 
             var processingTime = (DateTime.Now - loopStart).TotalMilliseconds;
             var delay = Math.Max(0, frameTime - processingTime);
@@ -64,8 +68,6 @@ class Game
 
             Console.Clear();
             Console.CursorTop= Console.CursorLeft=0;
-
-             frameCount++;
          }
 
         // Show the game over screen when a collision is detected
