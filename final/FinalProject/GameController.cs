@@ -1,9 +1,10 @@
 class GameController
  {
+    Bird bird = new();
     private InputHandler _inputHandler;
 
     public GameController(){
-        _inputHandler = new InputHandler();
+        _inputHandler = new InputHandler(bird);
     }
      public void StartGame(){
          UIManager uIManager = new UIManager();

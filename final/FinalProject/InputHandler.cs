@@ -1,14 +1,18 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 public class InputHandler
 {
     private bool _spacebarPressed;
     private Thread _inputThread;
+
+    private Bird _bird;
     private volatile bool _running;
 
-    public InputHandler()
+    public InputHandler(Bird bird)
     {
+        _bird = bird;
         _spacebarPressed = false;
         _running = true;
         _inputThread = new Thread(MonitorInput)
@@ -29,6 +33,7 @@ public class InputHandler
                 {
                     _spacebarPressed = true;
                     Console.WriteLine("Spacebar pressed!");
+                    _bird.Flap();
                     Thread.Sleep(100);
                 }
             }

@@ -24,7 +24,7 @@ class Game
     public async void StartGame()
     {
         gameController.StartGame();
-        InputHandler inputHandler = new InputHandler();
+        InputHandler inputHandler = new InputHandler(bird);
         await GameLoop(inputHandler);
     }
 
@@ -34,15 +34,12 @@ class Game
         const int targetFps = 60;
         const int frameTime = 1000 / targetFps;
 
+        DateTime loopStart;
+
         while (!collisionManager.CheckCollision(bird, obstacles))
         {
             Console.Clear();
-            var loopStart = DateTime.Now;
-            
-            if (inputHandler.IsSpacebarPressed())
-            {
-                bird.Flap();
-            }
+            loopStart = DateTime.Now;
 
             player.Update();
 
@@ -73,6 +70,5 @@ class Game
         }
 
         // Show the game over screen when a collision is detected
-        uIManager.ShowGameOver();
     }
 }
