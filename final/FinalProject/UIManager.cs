@@ -16,13 +16,13 @@ public class UIManager
 
             foreach (Obstacle obstacle in obstacles)
             {
-                if (x == obstacle.GetPositionTop().X && y <= obstacle.GetPositionTop().Y)
+                if (x == obstacle.GetPositionTop().X && y >= obstacle.GetPositionTop().Y)
                 {
                     Console.Write(pipe.pipeWidth);
                     x += 3;
                     drawn = true;
                 }
-                else if (x == obstacle.GetPositionBottom().X && y >= obstacle.GetPositionBottom().Y)
+                else if (x == obstacle.GetPositionBottom().X && y <= obstacle.GetPositionBottom().Y)
                 {
                     Console.Write(pipe.pipeWidth);
                     x += 3; // Adjusted from y += 4 to x += 3
