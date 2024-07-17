@@ -32,7 +32,6 @@ public class InputHandler
                 if (key.Key == ConsoleKey.Spacebar)
                 {
                     _spacebarPressed = true;
-                    Console.WriteLine("Spacebar pressed!");
                     _bird.Flap();
                     Thread.Sleep(100);
                 }

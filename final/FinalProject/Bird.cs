@@ -14,18 +14,19 @@ public class Bird
     public Bird()
     {
         _position = new Vector2(4, 15);
-        _velocity = new Vector2(0, 1);
+        _velocity = new Vector2(0, -1);
     }
 
     public void Flap()
     {
-        _velocity.Y = 5; // I think we may want to actually add here let me know what you think.
+        _velocity.Y -= 2; // I think we may want to actually add here let me know what you think.
     }
 
     public void Update()
     {
-        _velocity.X += physicsManager.ApplyGravity(); // We need to account for gravity here so we may want to add that in here let me know.
+        _velocity.Y += physicsManager.ApplyGravity(); // We need to account for gravity here so we may want to add that in here let me know.
         _position.Y += _velocity.Y;
+        _position.Y = Math.Clamp(_position.Y, 0, 25);
     }
 
 
