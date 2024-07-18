@@ -68,6 +68,7 @@ class Game
 
             frameCount++;
         }
+        inputHandler.Stop();
 
         // Show the game over screen when a collision is detected
     }

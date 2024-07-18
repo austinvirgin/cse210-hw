@@ -4,8 +4,12 @@ using System;
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.StartGame();
+            do
+            {
+                Game game = new Game();
+                game.StartGame(); 
+                 
+            } while (true);
         }
         
     }
