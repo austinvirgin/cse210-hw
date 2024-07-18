@@ -57,6 +57,7 @@ public class InputHandler
     {
         _running = false;
         _inputThread.Join();
+        SoundManager.EndSound();
     }
 
     public bool ClickedEnter()

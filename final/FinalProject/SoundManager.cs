@@ -13,4 +13,10 @@ class SoundManager
         
         
     }
+
+    public static void EndSound(){
+        using (SoundPlayer player = new("MusicStop.wav")){
+            player.PlaySync();
+        }
+    }
 }

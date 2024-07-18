@@ -4,7 +4,7 @@ using System;
     {
         static void Main(string[] args)
         {
-            string stop = "";
+            string stop;
             do
             {
                 Game game = new Game();
