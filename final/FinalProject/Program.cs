@@ -8,7 +8,8 @@ using System;
             do
             {
                 Game game = new Game();
-                game.StartGame(); 
+                game.StartGame();
+                Console.Clear();
                 Console.Write("Please enter quit to exit the game if you still want to play just press enter: ");
                 stop = Console.ReadLine();
                 stop = stop.ToLower();
