@@ -1,4 +1,5 @@
 using System.Numerics;
+
 public class Obstacle
 {
     private Vector2 PositionTop { get; set; }
@@ -8,12 +9,15 @@ public class Obstacle
 
     public Obstacle(int gapHeight, int pipeWidth)
     {
+        // Constructor for Obstacle
         this.gapHeight = gapHeight;
         this.pipeWidth = pipeWidth;
         CreateObstacle();
     }
 
-    public void CreateObstacle(){
+    public void CreateObstacle()
+    {
+        // Method to create a new obstacle
         Random random = new Random();
         int randInt = random.Next(11, 25);
         PositionTop = new Vector2(96, randInt);
@@ -22,26 +26,31 @@ public class Obstacle
 
     public virtual void Update()
     {
-        PositionTop = new Vector2(PositionTop.X -2 , PositionTop.Y); // Move to the left
-        PositionBottom = new Vector2 (PositionBottom.X -2, PositionBottom.Y);
+        // Method to update the position of the obstacle
+        PositionTop = new Vector2(PositionTop.X - 2, PositionTop.Y); // Move to the left
+        PositionBottom = new Vector2(PositionBottom.X - 2, PositionBottom.Y);
     }
 
     public bool IsOffScreen()
     {
-        // Check if the pipes have moved off the screen
+        // Method to check if the obstacle is off the screen
         return PositionTop.Y < 0;
     }
-   
+
     public virtual void Draw()
     {
-        // Drawing logic for the obstacle
+        // Method to draw the obstacle
     }
 
-    public Vector2 GetPositionTop(){
+    public Vector2 GetPositionTop()
+    {
+        // Method to get the position of the top part of the obstacle
         return PositionTop;
     }
 
-    public Vector2 GetPositionBottom(){
+    public Vector2 GetPositionBottom()
+    {
+        // Method to get the position of the bottom part of the obstacle
         return PositionBottom;
     }
 }

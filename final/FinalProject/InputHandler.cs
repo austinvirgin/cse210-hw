@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 public class InputHandler
@@ -14,6 +13,7 @@ public class InputHandler
 
     public InputHandler(Bird bird)
     {
+        // Constructor for InputHandler
         _bird = bird;
         _spacebarPressed = false;
         _running = true;
@@ -26,6 +26,7 @@ public class InputHandler
 
     private void MonitorInput()
     {
+        // Method to monitor user input
         while (_running)
         {
             if (Console.KeyAvailable)
@@ -45,6 +46,7 @@ public class InputHandler
 
     public bool IsSpacebarPressed()
     {
+        // Method to check if the spacebar was pressed
         if (_spacebarPressed)
         {
             _spacebarPressed = false;
@@ -55,6 +57,7 @@ public class InputHandler
 
     public void Stop()
     {
+        // Method to stop the input handler
         _running = false;
         _inputThread.Join();
         SoundManager.EndSound();
@@ -62,6 +65,7 @@ public class InputHandler
 
     public bool ClickedEnter()
     {
+        // Method to check if the Enter key was pressed
         Console.ReadLine();
         return true;
     }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 class Game
 {
     public List<Obstacle> obstacles = new List<Obstacle>();
@@ -12,10 +8,11 @@ class Game
     PhysicsManager physicsManager = new PhysicsManager();
     Pipe pipe = new Pipe();
     Player player = new Player();
-    PowerUp powerUp = new PowerUp();
     ScoreManager scoreManager = new ScoreManager();
     SoundManager soundManager = new SoundManager();
     UIManager uIManager = new UIManager();
+    EndGame endGame = new EndGame();
+    SaveLoad saveLoad = new SaveLoad();
 
     private const int gapHeight = 10; // Gap height between the pipes
     private const int pipeWidth = 4; // Width of the pipes
@@ -54,7 +51,16 @@ class Game
 
             // Update the positions of all game elements
             graphicsManager.MoveEverything(bird, obstacles);
-            
+
+            // Increment score if the bird passes through a pipe
+            foreach (var obstacle in obstacles)
+            {
+                if (obstacle.GetPositionTop().X == bird.GetPosition().X)
+                {
+                    scoreManager.IncrementScore();
+                }
+            }
+
             // Draw the updated game state on the screen
             graphicsManager.DrawDisplay(uIManager, obstacles, bird);
 
@@ -68,8 +74,42 @@ class Game
 
             frameCount++;
         }
-        inputHandler.Stop();
 
-        // Show the game over screen when a collision is detected
+        inputHandler.Stop();
+        EndGameSequence();
+    }
+
+    private void EndGameSequence()
+    {
+        int highScore = saveLoad.LoadHighScore();
+        int currentScore = scoreManager.GetScore();
+        
+        if (currentScore > highScore)
+        {
+            saveLoad.SaveHighScore(currentScore);
+            highScore = currentScore;
+        }
+
+        endGame.ShowMenu();
+        Console.WriteLine($"Final Score: {currentScore}");
+        Console.WriteLine($"High Score: {highScore}");
+        int choice = endGame.GetUserChoice();
+
+        switch (choice)
+        {
+            case 1:
+                saveLoad.SaveHighScore(scoreManager.GetScore());
+                break;
+            case 2:
+                highScore = saveLoad.LoadHighScore();
+                Console.WriteLine("High Score: " + highScore);
+                break;
+            case 3:
+                StartGame();
+                break;
+            case 4:
+                Environment.Exit(0);
+                break;
+        }
     }
 }

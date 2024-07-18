@@ -1,98 +1,91 @@
 using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 
 public class UIManager
 {
     Pipe pipe = new Pipe();
+
     public void GameDisplay(List<Obstacle> obstacles, Bird bird)
-{
-    for (int y = 0; y < 25; y++)
     {
-        for (int x = 0; x < 100; x++)
+        for (int y = 0; y < 25; y++)
         {
-            bool drawn = false;
-
-            foreach (Obstacle obstacle in obstacles)
+            for (int x = 0; x < 100; x++)
             {
-                if (x == obstacle.GetPositionTop().X && y >= obstacle.GetPositionTop().Y)
-                {
-                    Console.Write(pipe.pipeWidth);
-                    x += 3;
-                    drawn = true;
-                }
-                else if (x == obstacle.GetPositionBottom().X && y <= obstacle.GetPositionBottom().Y)
-                {
-                    Console.Write(pipe.pipeWidth);
-                    x += 3; // Adjusted from y += 4 to x += 3
-                    drawn = true;
-                }
-            }
+                bool drawn = false;
 
-            if (!drawn)
-            {
-                Vector2 birdPos = bird.GetPosition();
-                if (x == (int)birdPos.X - 1 && y == (int)birdPos.Y)
+                foreach (Obstacle obstacle in obstacles)
                 {
-                    Console.Write("\\");
-                    drawn = true;
+                    if (x == obstacle.GetPositionTop().X && y >= obstacle.GetPositionTop().Y)
+                    {
+                        Console.Write(pipe.pipeWidth);
+                        x += 3;
+                        drawn = true;
+                    }
+                    else if (x == obstacle.GetPositionBottom().X && y <= obstacle.GetPositionBottom().Y)
+                    {
+                        Console.Write(pipe.pipeWidth);
+                        x += 3; // Adjusted from y += 4 to x += 3
+                        drawn = true;
+                    }
                 }
-                else if (x == (int)birdPos.X && y == (int)birdPos.Y)
+
+                if (!drawn)
                 {
-                    Console.Write("( >");
-                    x += 2; // Adjusted from y += 3 to x += 2
-                    drawn = true;
+                    Vector2 birdPos = bird.GetPosition();
+                    if (x == (int)birdPos.X - 1 && y == (int)birdPos.Y)
+                    {
+                        Console.Write("\\");
+                        drawn = true;
+                    }
+                    else if (x == (int)birdPos.X && y == (int)birdPos.Y)
+                    {
+                        Console.Write("( >");
+                        x += 2; // Adjusted from y += 3 to x += 2
+                        drawn = true;
+                    }
+                    else if (x == (int)birdPos.X + 1 && y == (int)birdPos.Y)
+                    {
+                        Console.Write("/");
+                        drawn = true;
+                    }
                 }
-                else if (x == (int)birdPos.X + 1 && y == (int)birdPos.Y)
+
+                if (!drawn)
                 {
-                    Console.Write("/");
-                    drawn = true;
+                    Console.Write(" ");
                 }
-            }
-
-            if (!drawn)
-            {
-                Console.Write(" ");
-            }
-        }
-        Console.WriteLine();
-    }
-}
-    public void ShowScore(int score){
-
-    }
-
-    public void ShowGameOver(){
-
-        Console.Clear();
-        for (int x = 0; x < 25; x++)
-        {
-            for (int y = 0; y <100; y++)
-            {
-                if (x == 12 && y == 41){
-                    Console.Write("Game Over");
-                    y += 19;
             }
             Console.WriteLine();
         }
-
-        }
-        
     }
 
-     public void StartScreen()
+    public void ShowScore(int score)
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.Write($"Score: {score}");
+    }
+
+    public void ShowGameOver(int score, int highScore)
+    {
+        Console.Clear();
+        Console.WriteLine("Game Over");
+        Console.WriteLine($"Final Score: {score}");
+        Console.WriteLine($"High Score: {highScore}");
+    }
+
+    public void StartScreen()
     {
         // Draw the start screen with instructions
         for (int x = 0; x < 25; x++)
         {
-            for (int y = 0; y <100; y++)
+            for (int y = 0; y < 100; y++)
             {
-                if (x == 12 && y == 41){
+                if (x == 12 && y == 41)
+                {
                     Console.Write("Welcome to the game");
                     y += 19;
                 }
-                if (x == 13 && y == 40){
+                if (x == 13 && y == 40)
+                {
                     Console.Write("Press enter to start!");
                     y += 21;
                 }
