@@ -20,9 +20,9 @@ public class CollisionManager
     private bool IsColliding(Bird bird, Obstacle obstacle)
     {
         // Define obstacle boundaries
-        float obstacleTopY = obstacle.PositionTop.Y;
-        float obstacleBottomY = obstacle.PositionBottom.Y;
-        float obstacleX = obstacle.PositionTop.X; // Assuming both top and bottom have the same X position
+        float obstacleTopY = obstacle.GetPositionTop().Y;
+        float obstacleBottomY = obstacle.GetPositionBottom().Y;
+        float obstacleX = obstacle.GetPositionTop().X; // Assuming both top and bottom have the same X position
 
         // Get bird position
         int birdX = (int)bird.GetPosition().X;

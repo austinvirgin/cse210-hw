@@ -1,8 +1,8 @@
 using System.Numerics;
 public class Obstacle
 {
-    public Vector2 PositionTop { get; private set; }
-    public Vector2 PositionBottom { get; private set; }
+    private Vector2 PositionTop { get; set; }
+    private Vector2 PositionBottom { get; set; }
     private int gapHeight; // Height of the gap between the top and bottom pipes
     private int pipeWidth; // Width of the pipes
 
