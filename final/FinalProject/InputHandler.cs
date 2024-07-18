@@ -10,6 +10,8 @@ public class InputHandler
     private Bird _bird;
     private volatile bool _running;
 
+    SoundManager soundManager = new SoundManager();
+
     public InputHandler(Bird bird)
     {
         _bird = bird;
@@ -33,6 +35,7 @@ public class InputHandler
                 {
                     _spacebarPressed = true;
                     _bird.Flap();
+                    SoundManager.MainSound();
                     Thread.Sleep(100);
                 }
             }

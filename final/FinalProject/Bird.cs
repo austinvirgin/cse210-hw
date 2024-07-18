@@ -21,7 +21,7 @@ public class Bird
 
     public void Flap()
     {
-        _velocity.Y -= 2; // I think we may want to actually add here let me know what you think.
+        _velocity.Y = -1; // I think we may want to actually add here let me know what you think.
     }
 
     public void Update()

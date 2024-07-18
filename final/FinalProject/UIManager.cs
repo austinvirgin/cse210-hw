@@ -64,6 +64,20 @@ public class UIManager
     }
 
     public void ShowGameOver(){
+
+        Console.Clear();
+        for (int x = 0; x < 25; x++)
+        {
+            for (int y = 0; y <100; y++)
+            {
+                if (x == 12 && y == 41){
+                    Console.Write("Game Over");
+                    y += 19;
+            }
+            Console.WriteLine();
+        }
+
+        }
         
     }
 
