@@ -1,6 +1,6 @@
 public class EndGame
 {
-    public void ShowMenu()
+    public void ShowMenu(int finalScore, int highScore)
     {
         Console.Clear();
         Console.WriteLine("Game Over");
@@ -8,6 +8,8 @@ public class EndGame
         Console.WriteLine("2. Load High Score");
         Console.WriteLine("3. Play a New Game");
         Console.WriteLine("4. Quit");
+        Console.WriteLine($"Final Score: {finalScore}");
+        Console.WriteLine($"High Score: {highScore}");
     }
 
     public int GetUserChoice()

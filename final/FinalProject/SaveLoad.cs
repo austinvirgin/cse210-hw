@@ -27,7 +27,6 @@ public class SaveLoad
                 string scoreText = File.ReadAllText(SaveFilePath);
                 if (int.TryParse(scoreText, out int highScore))
                 {
-                    Console.WriteLine("Progress loaded.");
                     return highScore;
                 }
             }

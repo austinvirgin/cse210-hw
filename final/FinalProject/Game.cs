@@ -72,8 +72,7 @@ class Game
             frameCount++;
         }
         inputHandler.Stop();
-        endGame.ShowMenu();
-        int choice = endGame.GetUserChoice();
+        EndGameSequence();
     }
     public void EndGameSequence()
     {
@@ -85,8 +84,7 @@ class Game
             saveLoad.SaveHighScore(currentScore);
             highScore = currentScore;
         }
-        Console.WriteLine($"Final Score: {currentScore}");
-        Console.WriteLine($"High Score: {highScore}");
+        endGame.ShowMenu(currentScore, highScore);
     }
 
     public int GetHighScore(){
