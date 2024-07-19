@@ -5,11 +5,8 @@ class Game
     CollisionManager collisionManager = new CollisionManager();
     GameController gameController = new GameController();
     GraphicsManager graphicsManager = new GraphicsManager();
-    PhysicsManager physicsManager = new PhysicsManager();
-    Pipe pipe = new Pipe();
     Player player = new Player();
     ScoreManager scoreManager = new ScoreManager();
-    SoundManager soundManager = new SoundManager();
     UIManager uIManager = new UIManager();
     EndGame endGame = new EndGame();
     SaveLoad saveLoad = new SaveLoad();
@@ -74,12 +71,11 @@ class Game
 
             frameCount++;
         }
-
         inputHandler.Stop();
-        EndGameSequence();
+        endGame.ShowMenu();
+        int choice = endGame.GetUserChoice();
     }
-
-    private void EndGameSequence()
+    public void EndGameSequence()
     {
         int highScore = saveLoad.LoadHighScore();
         int currentScore = scoreManager.GetScore();
@@ -89,27 +85,11 @@ class Game
             saveLoad.SaveHighScore(currentScore);
             highScore = currentScore;
         }
-
-        endGame.ShowMenu();
         Console.WriteLine($"Final Score: {currentScore}");
         Console.WriteLine($"High Score: {highScore}");
-        int choice = endGame.GetUserChoice();
+    }
 
-        switch (choice)
-        {
-            case 1:
-                saveLoad.SaveHighScore(scoreManager.GetScore());
-                break;
-            case 2:
-                highScore = saveLoad.LoadHighScore();
-                Console.WriteLine("High Score: " + highScore);
-                break;
-            case 3:
-                StartGame();
-                break;
-            case 4:
-                Environment.Exit(0);
-                break;
-        }
+    public int GetHighScore(){
+        return saveLoad.LoadHighScore();
     }
 }

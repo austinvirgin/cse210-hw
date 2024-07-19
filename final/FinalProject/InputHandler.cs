@@ -9,8 +9,6 @@ public class InputHandler
     private Bird _bird;
     private volatile bool _running;
 
-    SoundManager soundManager = new SoundManager();
-
     public InputHandler(Bird bird)
     {
         // Constructor for InputHandler
@@ -34,13 +32,10 @@ public class InputHandler
                 var key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.Spacebar)
                 {
-                    _spacebarPressed = true;
                     _bird.Flap();
                     SoundManager.MainSound();
-                    Thread.Sleep(100);
                 }
-            }
-            Thread.Sleep(10); // Adjust sleep time if needed
+            } // Adjust sleep time if needed
         }
     }
 
