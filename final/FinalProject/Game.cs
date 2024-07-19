@@ -1,7 +1,9 @@
 class Game
 {
-    public List<Obstacle> obstacles = new List<Obstacle>();
-    Bird bird = new Bird();
+    public List<Entity> entities = new List<Entity>(){
+        new Bird()
+    };
+    Bird bird;
     CollisionManager collisionManager = new CollisionManager();
     GameController gameController = new GameController();
     GraphicsManager graphicsManager = new GraphicsManager();
@@ -11,8 +13,10 @@ class Game
     EndGame endGame = new EndGame();
     SaveLoad saveLoad = new SaveLoad();
 
+    public Game(){
+        bird = (Bird)entities[0];
+    }
     private const int gapHeight = 10; // Gap height between the pipes
-    private const int pipeWidth = 4; // Width of the pipes
     private const int obstacleSpacing = 30; // Distance between consecutive obstacles
 
     public async void StartGame()
@@ -30,7 +34,7 @@ class Game
 
         DateTime loopStart;
 
-        while (!collisionManager.CheckCollision(bird, obstacles))
+        while (!collisionManager.CheckCollision(bird, entities))
         {
             Console.Clear();
             loopStart = DateTime.Now;
@@ -40,26 +44,28 @@ class Game
             // Generate a new obstacle at regular intervals based on the obstacle spacing
             if (frameCount % obstacleSpacing == 0)
             {
-                obstacles.Add(new Obstacle(gapHeight, pipeWidth));
+                entities.Add(new Obstacle(gapHeight));
             }
 
             // Remove obstacles that have moved off the screen
-            obstacles.RemoveAll(o => o.IsOffScreen());
+            entities.RemoveAll(e => e is Obstacle && ((Obstacle)e).IsOffScreen());
 
             // Update the positions of all game elements
-            graphicsManager.MoveEverything(bird, obstacles);
+            foreach (Entity entity in entities){
+                entity.Update();
+            }
 
             // Increment score if the bird passes through a pipe
-            foreach (var obstacle in obstacles)
+            foreach (var entity in entities)
             {
-                if (obstacle.GetPositionTop().X == bird.GetPosition().X)
+                if (entity is Obstacle obstacle && obstacle.GetPositionTop().X == bird.GetPosition().X)
                 {
                     scoreManager.IncrementScore();
                 }
             }
 
             // Draw the updated game state on the screen
-            graphicsManager.DrawDisplay(uIManager, obstacles, bird);
+            graphicsManager.DrawDisplay(uIManager, entities);
 
             // Calculate remaining time for the frame and delay accordingly
             var processingTime = (DateTime.Now - loopStart).TotalMilliseconds;

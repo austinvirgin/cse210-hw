@@ -4,7 +4,7 @@ public class UIManager
 {
     Pipe pipe = new Pipe();
 
-    public void GameDisplay(List<Obstacle> obstacles, Bird bird)
+    public void GameDisplay(List<Entity> entities)
     {
         for (int y = 0; y < 25; y++)
         {
@@ -12,40 +12,45 @@ public class UIManager
             {
                 bool drawn = false;
 
-                foreach (Obstacle obstacle in obstacles)
+                foreach (Entity entity in entities)
                 {
-                    if (x == obstacle.GetPositionTop().X && y >= obstacle.GetPositionTop().Y)
-                    {
-                        Console.Write(pipe.pipeWidth);
-                        x += 3;
-                        drawn = true;
+                    if (entity is Obstacle obstacle){
+                        if (x == obstacle.GetPositionTop().X && y >= obstacle.GetPositionTop().Y)
+                        {
+                            Console.Write(pipe.pipeWidth);
+                            x += 3;
+                            drawn = true;
+                        }
+                        else if (x == obstacle.GetPositionBottom().X && y <= obstacle.GetPositionBottom().Y)
+                        {
+                            Console.Write(pipe.pipeWidth);
+                            x += 3; // Adjusted from y += 4 to x += 3
+                            drawn = true;
+                        }
                     }
-                    else if (x == obstacle.GetPositionBottom().X && y <= obstacle.GetPositionBottom().Y)
-                    {
-                        Console.Write(pipe.pipeWidth);
-                        x += 3; // Adjusted from y += 4 to x += 3
-                        drawn = true;
-                    }
-                }
+                
 
-                if (!drawn)
-                {
-                    Vector2 birdPos = bird.GetPosition();
-                    if (x == (int)birdPos.X - 1 && y == (int)birdPos.Y)
-                    {
-                        Console.Write("\\");
-                        drawn = true;
-                    }
-                    else if (x == (int)birdPos.X && y == (int)birdPos.Y)
-                    {
-                        Console.Write("( >");
-                        x += 2; // Adjusted from y += 3 to x += 2
-                        drawn = true;
-                    }
-                    else if (x == (int)birdPos.X + 1 && y == (int)birdPos.Y)
-                    {
-                        Console.Write("/");
-                        drawn = true;
+                    else if (entity is Bird bird){
+                        if (!drawn)
+                        {
+                            Vector2 birdPos = bird.GetPosition();
+                            if (x == (int)birdPos.X - 1 && y == (int)birdPos.Y)
+                            {
+                                Console.Write("\\");
+                                drawn = true;
+                            }
+                            else if (x == (int)birdPos.X && y == (int)birdPos.Y)
+                            {
+                                Console.Write("( >");
+                                x += 2; // Adjusted from y += 3 to x += 2
+                                drawn = true;
+                            }
+                            else if (x == (int)birdPos.X + 1 && y == (int)birdPos.Y)
+                            {
+                                Console.Write("/");
+                                drawn = true;
+                            }
+                        }
                     }
                 }
 

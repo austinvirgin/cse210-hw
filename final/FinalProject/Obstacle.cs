@@ -1,17 +1,15 @@
 using System.Numerics;
 
-public class Obstacle
+public class Obstacle : Entity
 {
     private Vector2 PositionTop { get; set; }
     private Vector2 PositionBottom { get; set; }
     private int gapHeight; // Height of the gap between the top and bottom pipes
-    private int pipeWidth; // Width of the pipes
 
-    public Obstacle(int gapHeight, int pipeWidth)
+    public Obstacle(int gapHeight)
     {
         // Constructor for Obstacle
         this.gapHeight = gapHeight;
-        this.pipeWidth = pipeWidth;
         CreateObstacle();
     }
 
@@ -21,10 +19,10 @@ public class Obstacle
         Random random = new Random();
         int randInt = random.Next(11, 25);
         PositionTop = new Vector2(96, randInt);
-        PositionBottom = new Vector2(96, randInt - 10);
+        PositionBottom = new Vector2(96, randInt - gapHeight);
     }
 
-    public virtual void Update()
+    public override void Update()
     {
         // Method to update the position of the obstacle
         PositionTop = new Vector2(PositionTop.X - 2, PositionTop.Y); // Move to the left
@@ -34,7 +32,7 @@ public class Obstacle
     public bool IsOffScreen()
     {
         // Method to check if the obstacle is off the screen
-        return PositionTop.Y < 0;
+        return PositionTop.X < 0;
     }
 
     public virtual void Draw()

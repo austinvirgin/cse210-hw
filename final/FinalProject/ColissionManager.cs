@@ -5,12 +5,12 @@ public class CollisionManager
     private const int screenHeight = 25;
     public int obstacleWidth = 4;
 
-    public bool CheckCollision(Bird bird, List<Obstacle> obstacles)
+    public bool CheckCollision(Bird bird, List<Entity> entities)
     {
         // Method to check for collisions between the bird and obstacles
-        foreach (var obstacle in obstacles) // we go through each of the obstacles here
+        foreach (var entity in entities) // we go through each of the obstacles here
         {
-            if (IsColliding(bird, obstacle)) // we then check if it will collide and if so we return true or false
+            if (entity is Obstacle obstacle && IsColliding(bird, obstacle)) // we then check if it will collide and if so we return true or false
             {
                 return true;
             }
